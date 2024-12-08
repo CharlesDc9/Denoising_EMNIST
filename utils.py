@@ -20,7 +20,7 @@ def load_images_from_zip(zip_filename='data/corrupted_emnist.zip'):
     data = np.load("data/" + npz_filename)['all_imagesfinal']  # Load the array
     return data / 255.0  # Normalize the pixel values
 
-def load_true_emnist(filename='data/emnist-balanced-train.csv'):
+def load_true_emnist(filename='data/emnist-balanced-train.parquet'):
     """
     Load the true Train EMNIST dataset.
 
@@ -31,8 +31,8 @@ def load_true_emnist(filename='data/emnist-balanced-train.csv'):
         numpy.ndarray: The images.
         numpy.ndarray: The labels.
     """
+    data = pd.read_parquet(filename)
     
-    data = pd.read_csv(filename)
     images = np.array(data.iloc[:, 1:])
     images = images.reshape(-1, 28, 28) / 255
     
