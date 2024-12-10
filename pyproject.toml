@@ -19,3 +19,7 @@ dependencies = [
 dev = [
     "ruff>=0.8.2",
 ]
+
+# Nécessaire pour que le module soit reconnu comme un package
+[tool.setuptools]
+py-modules = []
